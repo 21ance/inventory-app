@@ -10,8 +10,8 @@ const ItemSchema = new Schema({
 		ref: "Category",
 		required: true,
 	},
-	price: { type: Number, minLength: 1, maxLength: 10, required: true },
-	stock: { type: Number, minLength: 1, maxLength: 3, required: true },
+	price: { type: Number, minLength: 1, maxLength: 10 },
+	stock: { type: Number, minLength: 1, maxLength: 3 },
 	image: { type: String },
 });
 
