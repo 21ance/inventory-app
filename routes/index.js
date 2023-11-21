@@ -1,10 +1,9 @@
 var express = require("express");
 var router = express.Router();
 
-router.get("/", function (req, res, next) {
-	// TO DO: render some categories and items
-	res.render("index", { title: "Inventory App" });
-});
+// index route
+const index_controller = require("../controllers/indexController");
+router.get("/", index_controller.index);
 
 // category routes
 const category_controller = require("../controllers/categoryController");
