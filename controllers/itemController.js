@@ -1,12 +1,30 @@
 const Item = require("../models/item");
+const Category = require("../models/category");
 const asyncHandler = require("express-async-handler");
 
 exports.item_list = asyncHandler(async (req, res, next) => {
-	res.send("NOT IMPLEMENTED: Item List");
+	const allItems = await Item.find({}).sort({ name: 1 }).exec();
+
+	res.render("item_list", {
+		title: "Products",
+		item_list: allItems,
+	});
 });
 
 exports.item_detail = asyncHandler(async (req, res, next) => {
-	res.send(`NOT IMPLEMENTED: Item Detail: ${req.params.id}`);
+	const item = await Item.findById(req.params.id).exec();
+	const itemCategory = await Category.findById(item.category).exec();
+
+	if (item === null) {
+		const err = new Error("Item does not exist");
+		err.status = 404;
+		return next(err);
+	}
+
+	res.render("item_detail", {
+		item: item,
+		category: itemCategory.name,
+	});
 });
 
 exports.item_create_get = asyncHandler(async (req, res, next) => {

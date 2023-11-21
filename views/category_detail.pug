@@ -1,0 +1,11 @@
+extends layout 
+
+block content
+  div.flex.flex-col.items-center
+    h1.text-xl.p-4= title
+
+    div.flex.gap-4
+      each item in category_items
+          a(href=item.url).bg-slate-100.p-4.rounded #{item.name}
+      else 
+        p There are no items in this category 

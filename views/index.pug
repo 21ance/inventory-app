@@ -1,5 +1,18 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div.flex.flex-col.items-center
+    h2.text-xl.pt-4 Categories
+    div.flex.gap-4
+      each category in category_list
+          a(href=category.url).bg-slate-100.p-4.rounded #{category.name}
+      else 
+        p There are no categories 
+
+  div.flex.flex-col.items-center
+    h2.text-xl.pt-4 Items
+    div.flex.gap-4
+      each item in item_list
+          a(href=item.url).bg-slate-100.p-4.rounded #{item.name}
+      else 
+        p There are no categories 
