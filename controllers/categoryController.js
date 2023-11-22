@@ -26,6 +26,7 @@ exports.category_detail = asyncHandler(async (req, res, next) => {
 
 	res.render("category_detail", {
 		title: category.name,
+		category: category,
 		category_items: itemsInCategory,
 	});
 });
@@ -66,7 +67,15 @@ exports.category_create_post = [
 ];
 
 exports.category_delete_post = asyncHandler(async (req, res, next) => {
-	res.send("NOT IMPLEMENTED: Category Delete POST");
+	// note: delete button is already hidden on front end
+	// still check if there are items in category
+	const allItemsInCategory = await Item.find({
+		category: req.body.categoryid,
+	}).exec();
+	if (allItemsInCategory.length === 0) {
+		await Category.findByIdAndDelete(req.body.categoryid);
+	}
+	res.redirect("/categories");
 });
 
 exports.category_update_post = asyncHandler(async (req, res, next) => {
