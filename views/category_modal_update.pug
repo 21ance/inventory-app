@@ -2,14 +2,14 @@ extends modal_layout
 
 block content
 
-  form#modalForm(method='POST' action='/category/create' name="modalForm").bg-white.p-6.rounded.flex.flex-col.gap-2
+  form#modalForm(method='POST' action=`/category/${category._id}/update` name="modalForm").bg-white.p-6.rounded.flex.flex-col.gap-2
     div.flex.flex-col
       label(for='name') Category:
-      input(type='text', placeholder='CPU, RAM, Motherboard' name='name').border-black.border.p-1.rounded
+      input(type='text', placeholder='CPU, RAM, Motherboard' name='name' value=category.name).border-black.border.p-1.rounded
       p#name-error.text-sm.text-red-500 
     div.flex.flex-col
       label(for='description') Description:
-      textarea(type='text', placeholder='The CPU is the brain of a computer.' name='description').resize-none.border-black.border.p-1.rounded
+      textarea(type='text', placeholder='The CPU is the brain of a computer.' name='description').resize-none.border-black.border.p-1.rounded= category.description
       p#description-error.text-sm.text-red-500 
     input(type='file' name='image')
     div.flex.gap-2.pt-4

@@ -5,13 +5,17 @@ block content
     header.p-4
       div.flex.justify-center.gap-2
         h1.text-xl= title
+        button.modalButton.buttonUpdate update
         if category_items.length === 0
-          button#modalButton -
+          button.modalButton.buttonDelete delete
+        else
+          button.modalButton.buttonDelete.hidden delete
       p= category.description
     div#categoryItems.flex.gap-4
       each item in category_items
           a(href=item.url).bg-slate-100.p-4.rounded #{item.name}
       else 
         p There are no items in this category 
-      
+    
+    include ./category_modal_update
     include ./category_modal_delete

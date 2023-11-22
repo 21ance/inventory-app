@@ -1,16 +1,39 @@
-const modal = document.querySelector("#modal");
-const modalButton = document.querySelector("#modalButton");
-const modalForm = document.querySelector("#modalForm");
-const modalCancel = document.querySelector("#modalCancel");
-
-function modalToggle() {
-	modal.classList.toggle("hidden");
+function toggleModal(index) {
+	const modal = document.querySelectorAll(".modal");
+	modal[index].classList.toggle("hidden");
 }
 
-modalButton.addEventListener("click", modalToggle);
-modalCancel.addEventListener("click", modalToggle);
+function hideModal() {
+	document.querySelectorAll(".modal").forEach((modal) => {
+		modal.classList.add("hidden");
+	});
+}
+
+document.querySelectorAll(".modalButton").forEach((button) => {
+	button.addEventListener("click", (e) => {
+		if (e.target.classList.contains("buttonCreate")) {
+			toggleModal(0);
+		}
+		if (e.target.classList.contains("buttonUpdate")) {
+			toggleModal(0);
+		}
+		if (e.target.classList.contains("buttonDelete")) {
+			toggleModal(1);
+		}
+	});
+});
+
 document.addEventListener("click", (e) => {
-	if (e.target.id === "modal") {
-		modalToggle();
+	if (e.target.classList.contains("modal")) {
+		e.target.classList.add("hidden");
+	}
+	if (e.target.classList.contains("modalCancel")) {
+		hideModal();
+	}
+});
+
+document.addEventListener("keydown", (e) => {
+	if (e.key === "Escape") {
+		hideModal();
 	}
 });

@@ -73,11 +73,44 @@ exports.category_delete_post = asyncHandler(async (req, res, next) => {
 		category: req.body.categoryid,
 	}).exec();
 	if (allItemsInCategory.length === 0) {
-		await Category.findByIdAndDelete(req.body.categoryid);
+		await Category.findByIdAndDelete(req.params.id);
 	}
 	res.redirect("/categories");
 });
 
-exports.category_update_post = asyncHandler(async (req, res, next) => {
-	res.send("NOT IMPLEMENTED: Category Update POST");
-});
+exports.category_update_post = [
+	body("name", "Category name must contain 3 - 100 characters")
+		.trim()
+		.isLength({ min: 3, max: 100 })
+		.escape(),
+	body("description", "Description must not exceed 200 characters")
+		.trim()
+		.isLength({ max: 200 })
+		.escape(),
+	// to add image
+
+	asyncHandler(async (req, res, next) => {
+		const allCategory = await Category.find().exec();
+		const errors = validationResult(req);
+		const category = new Category({
+			name: req.body.name,
+			description: req.body.description,
+			_id: req.params.id,
+		});
+		if (!errors.isEmpty()) {
+			console.log(errors.array());
+		} else {
+			const filterDuplicate = allCategory.filter(
+				(cat) => cat.name.toLowerCase() === category.name.toLowerCase()
+			);
+			if (filterDuplicate.length === 0) {
+				console.log(category);
+				await Category.findByIdAndUpdate(req.params.id, category);
+				res.redirect(category.url);
+			} else {
+				// to fix, currently just infinitely loads
+				console.log(`${category.name} already exists`);
+			}
+		}
+	}),
+];
