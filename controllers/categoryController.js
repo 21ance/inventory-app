@@ -1,6 +1,7 @@
 const Category = require("../models/category");
 const Item = require("../models/item");
 const asyncHandler = require("express-async-handler");
+const { body, validationResult } = require("express-validator");
 
 exports.category_list = asyncHandler(async (req, res, next) => {
 	const allCategory = await Category.find({}).sort({ name: 1 }).exec();
@@ -29,24 +30,43 @@ exports.category_detail = asyncHandler(async (req, res, next) => {
 	});
 });
 
-exports.category_create_get = asyncHandler(async (req, res, next) => {
-	res.send("NOT IMPLEMENTED: Category Create GET");
-});
+exports.category_create_post = [
+	body("name", "Category name must contain 3 - 100 characters")
+		.trim()
+		.isLength({ min: 3, max: 100 })
+		.escape(),
+	body("description", "Description must not exceed 200 characters")
+		.trim()
+		.isLength({ max: 200 })
+		.escape(),
+	// to add image
 
-exports.category_create_post = asyncHandler(async (req, res, next) => {
-	res.send("NOT IMPLEMENTED: Category Create POST");
-});
-
-exports.category_delete_get = asyncHandler(async (req, res, next) => {
-	res.send("NOT IMPLEMENTED: Category Delete GET");
-});
+	asyncHandler(async (req, res, next) => {
+		const allCategory = await Category.find().exec();
+		const errors = validationResult(req);
+		const category = new Category({
+			name: req.body.name,
+			description: req.body.description,
+		});
+		if (!errors.isEmpty()) {
+			console.log(errors.array());
+		} else {
+			const filterDuplicate = allCategory.filter(
+				(cat) => cat.name.toLowerCase() === category.name.toLowerCase()
+			);
+			if (filterDuplicate.length === 0) {
+				await category.save();
+				res.redirect(category.url);
+			} else {
+				// to fix, currently just infinitely loads
+				console.log(`${category.name} already exists`);
+			}
+		}
+	}),
+];
 
 exports.category_delete_post = asyncHandler(async (req, res, next) => {
 	res.send("NOT IMPLEMENTED: Category Delete POST");
-});
-
-exports.category_update_get = asyncHandler(async (req, res, next) => {
-	res.send("NOT IMPLEMENTED: Category Update GET");
 });
 
 exports.category_update_post = asyncHandler(async (req, res, next) => {
