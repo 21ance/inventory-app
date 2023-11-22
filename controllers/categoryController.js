@@ -8,6 +8,7 @@ exports.category_list = asyncHandler(async (req, res, next) => {
 
 	res.render("category_list", {
 		title: "Categories",
+		category: { name: "", description: "" },
 		category_list: allCategory,
 	});
 });
