@@ -1,0 +1,20 @@
+header(class="flex flex-col mx-[-8rem]")
+  div(class="bg-neutral-950 text-white h-[44px] text-sm flex justify-between items-center px-24")
+    span
+      span.text-neutral-400 Mon-Thu #{" "}
+      span.font-bold 9:00 AM - 5:30 PM
+    span
+      span.text-neutral-400 Visit our showroom in 1234 Street Address City Adress, 1234 
+      a(href="" class="hover:text-blue-500 font-bold underline underline-offset-4") Contact Us
+    div.flex.gap-2
+      span Call Us: (00) 1234 5678
+      a(href="")
+        img(src="/images/svg/fb.svg")
+      a(href="")
+        img(src="/images/svg/ig.svg")
+  div.flex.gap-4.items-center.font-bold.shadow.px-24
+    a(href="/")
+      img(src="/images/svg/logo.svg")
+    each category in category_list
+      a(href=`/category/${category.id}` class="hover:text-blue-500")= category.name
+    button.text-blue-500.rounded-full.border-2.py-1.px-4.border-blue-500 Our Deals
