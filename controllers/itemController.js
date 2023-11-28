@@ -94,7 +94,9 @@ exports.item_create_post = [
 ];
 
 exports.item_delete_post = asyncHandler(async (req, res, next) => {
-	res.send("NOT IMPLEMENTED: Item Delete POST");
+	const item = await Item.findById(req.params.id).exec();
+	await Item.findByIdAndDelete(req.params.id);
+	res.redirect(`/category/${item.category}`);
 });
 
 exports.item_update_post = asyncHandler(async (req, res, next) => {

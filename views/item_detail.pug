@@ -2,5 +2,12 @@ extends layout
 
 block content
   div.flex.flex-col.items-center
-    h1.text-xl.pt-4= item.name
-    small= category
+    header.p-4
+      div.flex.flex-col.items-center
+        h1.text-xl= item.name
+        small= category
+        button.modalButton.buttonUpdate update
+        button.modalButton.buttonDelete delete
+
+    include ./category_modal_form
+    include ./modal_delete
