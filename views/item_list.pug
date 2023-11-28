@@ -2,10 +2,13 @@ extends layout
 
 block content
   div.flex.flex-col.items-center
-    h1.text-xl.p-4= title
-
-    div.flex.gap-4
+    div.flex.justify-center.p-4.gap-2
+      h1.text-xl= title
+      button.modalButton.buttonCreate Create
+    div.flex.gap-4.flex-wrap.justify-center
       each item in item_list
           a(href=item.url).bg-slate-100.p-4.rounded #{item.name}
       else 
         p There are no categories 
+
+    include ./item_modal_form

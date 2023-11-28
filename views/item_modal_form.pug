@@ -1,0 +1,36 @@
+extends modal_layout
+
+block content
+  - let formAction = item.name !== "" ? `/item/${item._id}/update` : "/item/create"
+
+  form#modalForm(method='POST' action=formAction name="modalForm").bg-white.p-6.rounded.flex.flex-col.gap-2
+    div.flex.flex-col
+      label(for='category') Category:
+      select(name="category").border-black.border.p-1.rounded
+        option(value="select") -- Select --
+        each category in category_list
+          option(value=category._id) #{category.name}
+      p#category-error.text-sm.text-red-500 
+    div.flex.flex-col
+      label(for='name') Item:
+      input(type='text', placeholder='CPU, RAM, Motherboard' name='name' value=item.name).border-black.border.p-1.rounded
+      p#name-error.text-sm.text-red-500 
+    div.flex.flex-col
+      label(for='description') Description:
+      textarea(type='text', placeholder='6 cores, 12 threads' name='description').resize-none.border-black.border.p-1.rounded= item.description
+      p#description-error.text-sm.text-red-500 
+    div.flex.flex-col
+      label(for='price') Price:
+      input(type='number', placeholder='₱10,000.00' name='price' step='.01' value=item.price).border-black.border.p-1.rounded
+      p#price-error.text-sm.text-red-500 
+    div.flex.flex-col
+      label(for='stock') Stock:
+      input(type='number', placeholder='10' name='stock' value=item.stock).border-black.border.p-1.rounded
+      p#stock-error.text-sm.text-red-500 
+    input(type='file' name='image')
+    div.flex.gap-2.pt-4
+      button.modalCancel(type='button').bg-red-500.w-fit.px-4.py-1.rounded.text-white Cancel
+      button#modalSubmit(type='submit').bg-green-500.w-fit.px-4.py-1.rounded.text-white Save
+
+  script(src='/javascripts/item.js')
+
