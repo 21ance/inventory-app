@@ -35,6 +35,4 @@ modalForm.addEventListener("submit", (e) => {
 			"Stock must be: 0 - 999";
 		e.preventDefault();
 	}
-
-	console.log(item);
 });
