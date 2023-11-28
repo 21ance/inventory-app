@@ -2,7 +2,7 @@ extends modal_layout
 
 block content
   - let formAction = item.name !== "" ? `/item/${item._id}/update` : "/item/create"
-
+  
   form#modalForm(method='POST' action=formAction name="modalForm").bg-white.p-6.rounded.flex.flex-col.gap-2
     div.flex.flex-col
       label(for='category') Category:
