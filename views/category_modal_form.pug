@@ -3,7 +3,7 @@ extends modal_layout
 block content
   - let formAction = category.name !== "" ? `/category/${category._id}/update` : "/category/create"
 
-  form#modalForm(method='POST' action=formAction name="modalForm").bg-white.p-6.rounded.flex.flex-col.gap-2
+  form#modalForm(method='POST' action=formAction name="modalForm" enctype="multipart/form-data").bg-white.p-6.rounded.flex.flex-col.gap-2
     div.flex.flex-col
       label(for='name') Category:
       input(type='text', placeholder='CPU, RAM, Motherboard' name='name' value=category.name).border-black.border.p-1.rounded
@@ -12,7 +12,7 @@ block content
       label(for='description') Description:
       textarea(type='text', placeholder='The CPU is the brain of a computer.' name='description').resize-none.border-black.border.p-1.rounded= category.description
       p#description-error.text-sm.text-red-500 
-    input(type='file' name='image')
+    input(type='file' name='image_upload')
     div.flex.gap-2.pt-4
       button.modalCancel(type='button').bg-red-500.w-fit.px-4.py-1.rounded.text-white Cancel
       button#modalSubmit(type='submit').bg-green-500.w-fit.px-4.py-1.rounded.text-white Save

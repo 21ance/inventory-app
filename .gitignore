@@ -1,2 +1,4 @@
 node_modules
 .env
+upload_category/
+upload_items/
