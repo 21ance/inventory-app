@@ -4,12 +4,12 @@ block content
   section.flex.flex-col.items-center
     img(src="/images/jpg/banner.jpg" class="w-full min-h-[150px] max-h-[500px] object-cover")
   section
-    header(class="flex justify-between items-center py-4")
-      h2(class="font-bold text-lg lg:text-2xl") New Products
+    header(class="flex justify-between items-center pb-4")
+      h2(class="font-bold text-lg lg:text-3xl") New Products
       a(href="/items" class="text-sm text-blue-500 underline underline-offset-2") See All New Items
-    div(class="flex gap-6 overflow-auto")
+    div(class="scroll flex gap-2 md:gap-6 overflow-auto scrollbar-hide")
       - for(let i = 0; i < item_list.length && i < 5; i ++)
-        a(href=item_list[i].url class="min-w-[130px] w-[130px] lg:min-w-[225px] lg:w-[225px] flex flex-col gap-1")
+        a(href=item_list[i].url class="min-w-[130px] min-h-[220px] w-[130px] lg:min-w-[225px] lg:w-[225px] grid grid-rows-[auto_1fr_auto_auto] gap-y-1")
           if item_list[i].stock === undefined || item_list[i].stock === 0
             span.flex.gap-2
               img(src="/images/svg/check-avail.svg")
@@ -18,22 +18,21 @@ block content
             span.flex.gap-2
               img(src="/images/svg/in-stock.svg")
               small(class="text-[#C94D3F]") in stock
-          //- to replace with actual image
-          //- img(src=item_list[i].image)
-          img(src="https://m.media-amazon.com/images/I/51GUexhiieL.__AC_SY300_SX300_QL70_FMwebp_.jpg")
+          img(src=`/images/upload_item/${item_list[i].image}` class="self-center")
           p= item_list[i].name
-          p.font-bold #{typeof item_list[i].price !== "number" ? "TBA" : `$${item_list[i].price.toFixed(2)}`}
+          p.font-bold #{typeof item_list[i].price !== "number" || item_list[i].price === 0 ? "TBA" : `$${item_list[i].price.toFixed(2)}`}
   include ./zip-banner
   - for(let i = 0; i < category_list.length && i < 5; i ++)
-    section.flex.gap-4
-      a(href=`/category/${category_list[i]._id}` class="min-w-[130px] w-[130px] lg:min-w-[225px] lg:w-[225px] flex flex-col items-center justify-around min-h-[400px] text-white bg-neutral-950")
-        span.font-bold.text-lg= category_list[i].name
-        small.underline See All Products
-      div
-        div(class="flex gap-6 overflow-auto")
+    section(class="flex flex-col md:flex-row gap-4")
+      a(href=`/category/${category_list[i]._id}` class="w-full lg:min-w-[225px] h-[100px] lg:w-[225px] flex flex-col items-center justify-around lg:h-[400px] text-white bg-neutral-950 relative")
+        image(src=`/images/upload_category/${category_list[i].image}` class="absolute z-0 h-full w-full")
+        span.font-bold.text-3xl.z-10= category_list[i].name
+        small.underline.z-10 See All Products
+      div.scroll.overflow-auto.scrollbar-hide
+        div(class="flex gap-2 md:gap-6")
           each item in item_list
             if item.category.toString() === category_list[i]._id.toString()
-              a(href=item.url class="min-w-[130px] w-[130px] lg:min-w-[225px] lg:w-[225px] flex flex-col gap-1")
+              a(href=item.url class="min-w-[130px] min-h-[220px] w-[130px] lg:min-w-[225px] lg:w-[225px] grid grid-rows-[auto_1fr_auto_auto] gap-y-1")
                 if item.stock === undefined || item.stock === 0
                   span.flex.gap-2
                     img(src="/images/svg/check-avail.svg")
@@ -42,8 +41,6 @@ block content
                   span.flex.gap-2
                     img(src="/images/svg/in-stock.svg")
                     small(class="text-[#C94D3F]") in stock
-                //- to replace with actual image
-                //- img(src=item.image)
-                img(src="https://m.media-amazon.com/images/I/51GUexhiieL.__AC_SY300_SX300_QL70_FMwebp_.jpg")
+                img(src=`/images/upload_item/${item.image}` class="self-center")
                 p= item.name
-                p.font-bold #{typeof item.price !== "number" ? "TBA" : `$${item.price.toFixed(2)}`}
+                p.font-bold #{typeof item.price !== "number" ||  item.price === 0 ? "TBA" : `$${item.price.toFixed(2)}`}

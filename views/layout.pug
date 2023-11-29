@@ -6,6 +6,7 @@ html(lang="en")
     link(rel='stylesheet', href='/stylesheets/style.css')
   body(class="sm:px-24")
     include ./header
-    main.flex.flex-col.gap-4
+    main(class="flex flex-col gap-4 md:gap-8")
       block content
   script(src='/javascripts/modal.js')
+  script(src='/javascripts/scroll.js')
