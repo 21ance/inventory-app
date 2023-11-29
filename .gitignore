@@ -1,4 +1,4 @@
 node_modules
 .env
 upload_category/
-upload_items/
+upload_item/

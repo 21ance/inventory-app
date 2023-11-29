@@ -3,6 +3,27 @@ const Category = require("../models/category");
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 
+// multer middleware
+// https://www.youtube.com/watch?v=wIOpe8S2Mk8
+const path = require("path");
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, "public/images/upload_item");
+	},
+	filename: (req, file, cb) => {
+		cb(null, Date.now() + path.extname(file.originalname));
+	},
+});
+
+const upload = multer({
+	storage: storage,
+	limits: {
+		fileSize: 1000000,
+	},
+});
+
 exports.item_list = asyncHandler(async (req, res, next) => {
 	const allItems = await Item.find().sort({ name: 1 }).exec();
 	const allCategory = await Category.find().sort({ name: 1 }).exec();
@@ -40,6 +61,8 @@ exports.item_detail = asyncHandler(async (req, res, next) => {
 });
 
 exports.item_create_post = [
+	upload.single("image_upload"),
+
 	body("name", "item name must contain 10 - 100 characters")
 		.trim()
 		.isLength({ min: 10, max: 100 })
@@ -78,6 +101,9 @@ exports.item_create_post = [
 		if (req.body.stock === "") {
 			item.stock = 0;
 		}
+		if (req.file !== undefined) {
+			item.image = req.file.filename;
+		}
 		if (!errors.isEmpty()) {
 			console.log(errors.array());
 		} else {
@@ -102,6 +128,8 @@ exports.item_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.item_update_post = [
+	upload.single("image_upload"),
+
 	body("name", "item name must contain 10 - 100 characters")
 		.trim()
 		.isLength({ min: 10, max: 100 })
@@ -140,6 +168,9 @@ exports.item_update_post = [
 		}
 		if (req.body.stock === "") {
 			item.stock = 0;
+		}
+		if (req.file !== undefined) {
+			item.image = req.file.filename;
 		}
 		if (!errors.isEmpty()) {
 			console.log(errors.array());
