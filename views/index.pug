@@ -1,18 +1,49 @@
 extends layout
 
 block content
-  div.flex.flex-col.items-center
-    a(href="/categories").text-xl.pt-4 Categories
-    div.flex.gap-4.flex-wrap.justify-center
-      each category in category_list
-          a(href=category.url).bg-slate-100.p-4.rounded #{category.name}
-      else 
-        p There are no categories 
-
-  div.flex.flex-col.items-center
-    a(href="/items").text-xl.pt-4 Items
-    div.flex.gap-4.flex-wrap.justify-center
-      each item in item_list
-          a(href=item.url).bg-slate-100.p-4.rounded #{item.name}
-      else 
-        p There are no categories 
+  section.flex.flex-col.items-center
+    img(src="/images/jpg/banner.jpg" class="w-full min-h-[150px] max-h-[500px] object-cover")
+  section
+    header(class="flex justify-between items-center py-4")
+      h2(class="font-bold text-lg lg:text-2xl") New Products
+      a(href="/items" class="text-sm text-blue-500 underline underline-offset-2") See All New Items
+    div(class="flex gap-6 overflow-auto")
+      - for(let i = 0; i < item_list.length && i < 5; i ++)
+        a(href=item_list[i].url class="min-w-[130px] w-[130px] lg:min-w-[225px] lg:w-[225px] flex flex-col gap-1")
+          if item_list[i].stock === undefined || item_list[i].stock === 0
+            span.flex.gap-2
+              img(src="/images/svg/check-avail.svg")
+              small(class="text-[#C94D3F]") check availability
+          else  
+            span.flex.gap-2
+              img(src="/images/svg/in-stock.svg")
+              small(class="text-[#C94D3F]") in stock
+          //- to replace with actual image
+          //- img(src=item_list[i].image)
+          img(src="https://m.media-amazon.com/images/I/51GUexhiieL.__AC_SY300_SX300_QL70_FMwebp_.jpg")
+          p= item_list[i].name
+          p.font-bold #{typeof item_list[i].price !== "number" ? "TBA" : `$${item_list[i].price.toFixed(2)}`}
+  include ./zip-banner
+  - for(let i = 0; i < category_list.length && i < 5; i ++)
+    section.flex.gap-4
+      a(href=`/category/${category_list[i]._id}` class="min-w-[130px] w-[130px] lg:min-w-[225px] lg:w-[225px] flex flex-col items-center justify-around min-h-[400px] text-white bg-neutral-950")
+        span.font-bold.text-lg= category_list[i].name
+        small.underline See All Products
+      div
+        div(class="flex gap-6 overflow-auto")
+          each item in item_list
+            if item.category.toString() === category_list[i]._id.toString()
+              a(href=item.url class="min-w-[130px] w-[130px] lg:min-w-[225px] lg:w-[225px] flex flex-col gap-1")
+                if item.stock === undefined || item.stock === 0
+                  span.flex.gap-2
+                    img(src="/images/svg/check-avail.svg")
+                    small(class="text-[#C94D3F]") check availability
+                else  
+                  span.flex.gap-2
+                    img(src="/images/svg/in-stock.svg")
+                    small(class="text-[#C94D3F]") in stock
+                //- to replace with actual image
+                //- img(src=item.image)
+                img(src="https://m.media-amazon.com/images/I/51GUexhiieL.__AC_SY300_SX300_QL70_FMwebp_.jpg")
+                p= item.name
+                p.font-bold #{typeof item.price !== "number" ? "TBA" : `$${item.price.toFixed(2)}`}

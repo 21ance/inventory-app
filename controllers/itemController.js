@@ -5,7 +5,7 @@ const { body, validationResult } = require("express-validator");
 
 exports.item_list = asyncHandler(async (req, res, next) => {
 	const allItems = await Item.find().sort({ name: 1 }).exec();
-	const allCategory = await Category.find().exec();
+	const allCategory = await Category.find().sort({ name: 1 }).exec();
 
 	res.render("item_list", {
 		title: "Items",
@@ -24,7 +24,7 @@ exports.item_list = asyncHandler(async (req, res, next) => {
 exports.item_detail = asyncHandler(async (req, res, next) => {
 	const item = await Item.findById(req.params.id).exec();
 	const itemCategory = await Category.findById(item.category).exec();
-	const allCategory = await Category.find().exec();
+	const allCategory = await Category.find().sort({ name: 1 }).exec();
 
 	if (item === null) {
 		const err = new Error("Item does not exist");
@@ -144,16 +144,8 @@ exports.item_update_post = [
 		if (!errors.isEmpty()) {
 			console.log(errors.array());
 		} else {
-			const filterDuplicate = allItems.filter(
-				(i) => i.name.toLowerCase() === item.name.toLowerCase()
-			);
-			if (filterDuplicate.length === 0) {
-				await Item.findByIdAndUpdate(req.params.id, item);
-				res.redirect(item.url);
-			} else {
-				// to fix, currently just infinitely loads
-				console.log(`${item.name} already exists`);
-			}
+			await Item.findByIdAndUpdate(req.params.id, item);
+			res.redirect(item.url);
 		}
 	}),
 ];

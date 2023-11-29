@@ -9,7 +9,10 @@ block content
       select(name="category").border-black.border.p-1.rounded
         option(value="select") -- Select --
         each category in category_list
-          option(value=category._id) #{category.name}
+          if item._id
+            option(value=category._id selected=(category._id.toString()===item.category._id.toString() ? 'selected' : false) ) #{category.name}
+          else
+            option(value=category._id) #{category.name}
       p#category-error.text-sm.text-red-500 
     div.flex.flex-col
       label(for='name') Item:
@@ -33,4 +36,3 @@ block content
       button#modalSubmit(type='submit').bg-green-500.w-fit.px-4.py-1.rounded.text-white Save
 
   script(src='/javascripts/item.js')
-
