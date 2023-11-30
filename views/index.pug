@@ -9,7 +9,7 @@ block content
       a(href="/items" class="text-sm text-blue-500 underline underline-offset-2") See All New Items
     div(class="scroll flex gap-2 md:gap-6 overflow-auto scrollbar-hide")
       - for(let i = 0; i < item_list.length && i < 5; i ++)
-        a(href=item_list[i].url class="min-w-[130px] min-h-[220px] w-[130px] lg:min-w-[225px] lg:w-[225px] grid grid-rows-[auto_1fr_auto_auto] gap-y-1")
+        a(href=item_list[i].url class="min-w-[130px] min-h-[300px] w-[130px] lg:min-w-[225px] lg:w-[225px] grid grid-rows-[auto_1fr_auto_auto] gap-y-1")
           if item_list[i].stock === undefined || item_list[i].stock === 0
             span.flex.gap-2
               img(src="/images/svg/check-avail.svg")
@@ -24,15 +24,15 @@ block content
   include ./zip-banner
   - for(let i = 0; i < category_list.length && i < 5; i ++)
     section(class="flex flex-col md:flex-row gap-4")
-      a(href=`/category/${category_list[i]._id}` class="w-full lg:min-w-[225px] h-[100px] lg:w-[225px] flex flex-col items-center justify-around lg:h-[400px] text-white bg-neutral-950 relative")
-        image(src=`/images/upload_category/${category_list[i].image}` class="absolute z-0 h-full w-full")
+      a(href=`/category/${category_list[i]._id}` class="lg:min-w-[225px] h-[150px] lg:w-[225px] flex flex-col items-center justify-around lg:h-[400px] text-white bg-slate-700 relative rounded")
+        image(src=`/images/upload_category/${category_list[i].image}` class="absolute z-0 h-full w-full object-cover blur-[2px]")
         span.font-bold.text-3xl.z-10= category_list[i].name
         small.underline.z-10 See All Products
       div.scroll.overflow-auto.scrollbar-hide
         div(class="flex gap-2 md:gap-6")
           each item in item_list
             if item.category.toString() === category_list[i]._id.toString()
-              a(href=item.url class="min-w-[130px] min-h-[220px] w-[130px] lg:min-w-[225px] lg:w-[225px] grid grid-rows-[auto_1fr_auto_auto] gap-y-1")
+              a(href=item.url class="min-w-[130px] min-h-[300px] w-[130px] lg:min-w-[225px] lg:w-[225px] grid grid-rows-[auto_1fr_auto_auto] gap-y-1")
                 if item.stock === undefined || item.stock === 0
                   span.flex.gap-2
                     img(src="/images/svg/check-avail.svg")

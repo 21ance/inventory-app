@@ -1,15 +1,12 @@
 extends layout
 
 block content
-  div.flex.flex-col.items-center
-    div.flex.justify-center.p-4.gap-2
-      h1.text-xl= title
-      button.modalButton.buttonCreate Create
-    div.flex.gap-4.flex-wrap.justify-center
-      each category in category_list
-          a(href=category.url).bg-slate-100.p-4.rounded #{category.name}
-      else 
-        p There are no categories 
+  section(class="flex gap-4 pt-4 flex-wrap")
+    button(class="modalButton buttonCreate w-full lg:min-w-[225px] h-[150px] lg:w-[225px] flex flex-col items-center justify-around lg:h-[400px] relative rounded bg-[url('/images/avif/new.avif')] bg-cover text-green-500 text-3xl font-bold") New +
+    - for(let i = 0; i < category_list.length && i < 5; i ++)
+      a(href=`/category/${category_list[i]._id}` class="w-full lg:min-w-[225px] h-[150px] lg:w-[225px] flex flex-col items-center justify-around lg:h-[400px] text-white relative rounded bg-slate-700")
+        image(src=`/images/upload_category/${category_list[i].image}` class="absolute z-0 h-full w-full object-cover blur-[2px]")
+        span.font-bold.text-3xl.z-10= category_list[i].name
+        small.underline.z-10 See All Products
 
-    include ./category_modal_form
-
+  include ./category_modal_form
