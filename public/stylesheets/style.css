@@ -494,6 +494,9 @@ video {
 .relative {
   position: relative;
 }
+.sticky {
+  position: sticky;
+}
 .inset-0 {
   inset: 0px;
 }
@@ -504,6 +507,9 @@ video {
 .inset-y-0 {
   top: 0px;
   bottom: 0px;
+}
+.top-0 {
+  top: 0px;
 }
 .z-0 {
   z-index: 0;

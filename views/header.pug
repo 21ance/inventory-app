@@ -1,4 +1,4 @@
-header(class="flex flex-col sm:mx-[-6rem]")
+header(class="sticky top-0 flex flex-col sm:mx-[-6rem] z-20")
   div(class="bg-neutral-950 text-white h-[44px] text-sm flex justify-center sm:justify-between items-center sm:px-24")
     span(class="hidden sm:block")
       span.text-neutral-400 Mon-Thu #{" "}
@@ -12,7 +12,7 @@ header(class="flex flex-col sm:mx-[-6rem]")
         img(src="/images/svg/fb.svg")
       a(href="")
         img(src="/images/svg/ig.svg")
-  div(class="flex gap-4 justify-center sm:justify-start items-center font-bold shadow sm:px-24 py-4")
+  div(class="flex gap-4 justify-center sm:justify-start items-center font-bold shadow sm:px-24 py-4 bg-white")
     a(href="/" class="hidden sm:inline")
       img(src="/images/svg/logo.svg")
     if category_list !== undefined
