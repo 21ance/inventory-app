@@ -4,9 +4,8 @@ html(lang="en")
     meta(name='viewport' content='width=device-width, initial-scale=1')
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+  include ./header
   body(class="sm:px-24")
-    include ./header
-    main(class="flex flex-col gap-4 md:gap-8")
-      block content
+    block content
   script(src='/javascripts/modal.js')
   script(src='/javascripts/scroll.js')

@@ -25,7 +25,7 @@ const upload = multer({
 });
 
 exports.category_list = asyncHandler(async (req, res, next) => {
-	const allCategory = await Category.find({}).sort({ name: 1 }).exec();
+	const allCategory = await Category.find().sort({ name: 1 }).exec();
 
 	res.render("category_list", {
 		title: "Categories",
@@ -35,11 +35,21 @@ exports.category_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.category_detail = asyncHandler(async (req, res, next) => {
-	const allCategory = await Category.find({}).sort({ name: 1 }).exec();
-	const [category, itemsInCategory] = await Promise.all([
-		Category.findById(req.params.id).exec(),
-		Item.find({ category: req.params.id }).exec(),
-	]);
+	const [category, itemsInCategory, allCategory, categoryItemCount] =
+		await Promise.all([
+			Category.findById(req.params.id).exec(),
+			Item.find({ category: req.params.id }).exec(),
+			Category.find().sort({ name: 1 }).exec(),
+			Item.aggregate([
+				{
+					$group: {
+						_id: "$category",
+						count: { $sum: 1 },
+					},
+				},
+				{ $sort: { _id: 1 } },
+			]).exec(),
+		]);
 
 	if (category === null) {
 		const err = new Error("Category does not exist");
@@ -52,6 +62,7 @@ exports.category_detail = asyncHandler(async (req, res, next) => {
 		category: category,
 		category_items: itemsInCategory,
 		category_list: allCategory,
+		category_sidebar: categoryItemCount,
 	});
 });
 

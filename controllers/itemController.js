@@ -25,8 +25,19 @@ const upload = multer({
 });
 
 exports.item_list = asyncHandler(async (req, res, next) => {
-	const allItems = await Item.find().sort({ name: 1 }).exec();
-	const allCategory = await Category.find().sort({ name: 1 }).exec();
+	const [allItems, allCategory, categoryItemCount] = await Promise.all([
+		Item.find().sort({ name: 1 }).exec(),
+		Category.find().sort({ name: 1 }).exec(),
+		Item.aggregate([
+			{
+				$group: {
+					_id: "$category",
+					count: { $sum: 1 },
+				},
+			},
+			{ $sort: { _id: 1 } },
+		]).exec(),
+	]);
 
 	res.render("item_list", {
 		title: "Items",
@@ -39,6 +50,7 @@ exports.item_list = asyncHandler(async (req, res, next) => {
 		},
 		item_list: allItems,
 		category_list: allCategory,
+		category_sidebar: categoryItemCount,
 	});
 });
 

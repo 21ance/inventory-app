@@ -1,0 +1,17 @@
+aside(class="min-w-[200px] lg:flex flex-col gap-4 hidden")
+  section(class="bg-[#F5F7FF] p-4 gap-2 flex flex-col")
+    h2.font-bold Category
+    each category in category_sidebar
+      a(href=`/category/${category._id}` class="text-sm flex justify-between hover:text-blue-500")
+        each cat, index in category_list
+          if cat._id.toString() === category._id.toString()
+            span= cat.name
+        span= category.count
+  section(class="grid grid-cols-[1fr_1fr] items-center justify-items-center")
+    img(src="/images/svg/brand-1.svg")
+    img(src="/images/svg/brand-2.svg")
+    img(src="/images/svg/brand-3.svg")
+    img(src="/images/svg/brand-4.svg")
+    img(src="/images/svg/brand-5.svg")
+    img(src="/images/svg/brand-6.svg")
+  img(src="/images/svg/aside-banner.svg")
