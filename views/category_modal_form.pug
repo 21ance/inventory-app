@@ -13,6 +13,7 @@ block content
       textarea(type='text', placeholder='The CPU is the brain of a computer.' name='description').resize-none.border-black.border.p-1.rounded= category.description
       p#description-error.text-sm.text-red-500 
     input(type='file' name='image_upload')
+    input(type='hidden', name="date_created" value=category.date_created)
     div.flex.gap-2.pt-4
       button.modalCancel(type='button').bg-red-500.w-fit.px-4.py-1.rounded.text-white Cancel
       button#modalSubmit(type='submit').bg-green-500.w-fit.px-4.py-1.rounded.text-white Save

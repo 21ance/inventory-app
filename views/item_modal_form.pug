@@ -31,6 +31,7 @@ block content
       input(type='number', placeholder='10' name='stock' value=item.stock).border-black.border.p-1.rounded
       p#stock-error.text-sm.text-red-500 
     input(type='file' name='image_upload')
+    input(type='hidden', name="date_created" value=item.date_created)
     div.flex.gap-2.pt-4
       button.modalCancel(type='button').bg-red-500.w-fit.px-4.py-1.rounded.text-white Cancel
       button#modalSubmit(type='submit').bg-green-500.w-fit.px-4.py-1.rounded.text-white Save

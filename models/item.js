@@ -13,6 +13,8 @@ const ItemSchema = new Schema({
 	price: { type: Number, minLength: 1, maxLength: 10 },
 	stock: { type: Number, minLength: 1, maxLength: 3 },
 	image: { type: String },
+	date_created: { type: Date },
+	date_modified: { type: Date },
 });
 
 ItemSchema.virtual("url").get(function () {

@@ -84,6 +84,8 @@ exports.category_create_post = [
 		const category = new Category({
 			name: req.body.name,
 			description: req.body.description,
+			date_created: new Date(),
+			date_modified: new Date(),
 		});
 		if (req.file !== undefined) {
 			category.image = req.file.filename;
@@ -136,6 +138,8 @@ exports.category_update_post = [
 			name: req.body.name,
 			description: req.body.description,
 			_id: req.params.id,
+			date_created: req.params.date_created,
+			date_modified: new Date(),
 		});
 		if (req.file !== undefined) {
 			category.image = req.file.filename;

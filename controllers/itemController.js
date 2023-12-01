@@ -106,6 +106,8 @@ exports.item_create_post = [
 			description: req.body.description,
 			price: req.body.price,
 			stock: req.body.stock,
+			date_created: new Date(),
+			date_modified: new Date(),
 		});
 		if (req.body.price === "") {
 			item.price = 0;
@@ -174,6 +176,8 @@ exports.item_update_post = [
 			price: req.body.price,
 			stock: req.body.stock,
 			_id: req.params.id,
+			date_created: req.params.date_created,
+			date_modified: new Date(),
 		});
 		if (req.body.price === "") {
 			item.price = 0;
