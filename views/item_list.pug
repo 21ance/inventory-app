@@ -1,16 +1,25 @@
 extends layout
 
 block content
-  main(class="grid grid-cols-[auto_1fr]")
+  main(class="grid grid-cols-1 lg:grid-cols-[auto_1fr] sm:pr-[-6rem]")
     include ./category_sidebar
-    div.flex.flex-col.items-center
-      div.flex.justify-center.p-4.gap-2
-        h1.text-xl= title
-        button.modalButton.buttonCreate Create
-      div.flex.gap-4.flex-wrap.justify-center
+    section(class="flex flex-col gap-4 p-4")
+      div(class="flex justify-between items-center")
+        h1(class="col-[1/-1] text-xl font-bold lg:justify-self-start") All #{title}
+        button(class="buttonCreate modalButton w-[20px] h-[20px] bg-[url('/images/png/add-icon.png')] bg-cover")
+      div(class="grid grid-cols-list_mini md:grid-cols-list justify-items-center gap-4")
         each item in item_list
-            a(href=item.url).bg-slate-100.p-4.rounded #{item.name}
-        else 
-          p There are no categories 
+          a(href=item.url class="min-w-[130px] min-h-[300px] w-[130px] lg:min-w-[225px] lg:w-[225px] grid grid-rows-[auto_1fr_auto_auto] gap-y-1")
+            if item.stock === undefined || item.stock === 0
+              span.flex.gap-2
+                img(src="/images/svg/check-avail.svg")
+                small(class="text-[#C94D3F]") check availability
+            else  
+              span.flex.gap-2
+                img(src="/images/svg/in-stock.svg")
+                small(class="text-[#C94D3F]") in stock
+            img(src=`/images/upload_item/${item.image}` class="self-center")
+            p= item.name
+            p.font-bold #{typeof item.price !== "number" ||  item.price === 0 ? "TBA" : `$${item.price.toFixed(2)}`}
   
   include ./item_modal_form

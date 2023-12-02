@@ -66,6 +66,7 @@ exports.item_detail = asyncHandler(async (req, res, next) => {
 	}
 
 	res.render("item_detail", {
+		title: item.name,
 		item: item,
 		category: itemCategory.name,
 		category_list: allCategory,
@@ -167,7 +168,6 @@ exports.item_update_post = [
 	// to add image,
 
 	asyncHandler(async (req, res, next) => {
-		const allItems = await Item.find().exec();
 		const errors = validationResult(req);
 		const item = new Item({
 			category: req.body.category,
