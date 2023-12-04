@@ -18,7 +18,7 @@ block content
               span.flex.gap-2
                 img(src="/images/svg/in-stock.svg")
                 small(class="text-[#C94D3F]") in stock
-            img(src=`/images/upload_item/${item.image}` class="self-center")
+            img(src=item.src_url class="self-center")
             p= item.name
             p.font-bold #{typeof item.price !== "number" ||  item.price === 0 ? "TBA" : `$${item.price.toFixed(2)}`}
   

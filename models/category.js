@@ -14,4 +14,8 @@ CategorySchema.virtual("url").get(function () {
 	return `/category/${this._id}`;
 });
 
+CategorySchema.virtual("src_url").get(function () {
+	return `/images/upload_category/${this.image}`;
+});
+
 module.exports = mongoose.model("Category", CategorySchema);
