@@ -2,7 +2,6 @@ extends modal_layout
 
 block content
   - let formItemAction = item.name === "" || item.name === undefined ? "/item/create" : `/item/${item._id}/update`
-  - console.log(item.name)
   
   form#formItem(method='POST' action=formItemAction name="modalForm" enctype="multipart/form-data").bg-white.p-6.rounded.flex.flex-col.gap-2
     div.flex.flex-col

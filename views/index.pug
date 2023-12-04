@@ -24,8 +24,8 @@ block content
             p.font-bold #{typeof item_list[i].price !== "number" || item_list[i].price === 0 ? "TBA" : `$${item_list[i].price.toFixed(2)}`}
     include ./zip-banner
     - for(let i = 0; i < category_list.length && i < 5; i ++)
-      section(class="flex flex-col md:flex-row gap-4")
-        a(href=`/category/${category_list[i]._id}` class="lg:min-w-[225px] h-[150px] lg:w-[225px] flex flex-col items-center justify-around lg:h-[400px] text-white bg-slate-700 relative rounded")
+      section(class="flex flex-col lg:flex-row gap-4")
+        a(href=`/category/${category_list[i]._id}` class="min-w-[225px] h-[150px] lg:h-[400px] flex flex-col items-center justify-around text-white bg-slate-700 relative rounded")
           image(src=category_list[i].src_url class="absolute z-0 h-full w-full object-cover blur-[2px]")
           span.font-bold.text-3xl.z-10= category_list[i].name
           small.underline.z-10 See All Products

@@ -2,7 +2,7 @@ extends layout
 
 block content
   main(class="grid grid-cols-1 lg:grid-cols-[1fr_1fr] sm:mx-[-6rem] gap-y-2")
-    section(class="bg-[#F5F7FF] flex flex-col gap-4 lg:gap-8 sm:pl-[6rem]")
+    section(class="bg-[#F5F7FF] flex flex-col gap-4 lg:gap-8 sm:px-[6rem]")
       header
         a(href="/").text-sm Home #{"> "}
         a(href=`/category/${item.category._id}`).text-sm #{item.category.name} #{"> "}

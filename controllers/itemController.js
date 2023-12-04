@@ -76,9 +76,9 @@ exports.item_detail = asyncHandler(async (req, res, next) => {
 exports.item_create_post = [
 	upload.single("image_upload"),
 
-	body("name", "item name must contain 10 - 100 characters")
+	body("name", "item name must contain 5 - 100 characters")
 		.trim()
-		.isLength({ min: 10, max: 100 })
+		.isLength({ min: 5, max: 100 })
 		.escape(),
 	body("description", "Description must not exceed 200 characters")
 		.trim()
@@ -145,9 +145,9 @@ exports.item_delete_post = asyncHandler(async (req, res, next) => {
 exports.item_update_post = [
 	upload.single("image_upload"),
 
-	body("name", "item name must contain 10 - 100 characters")
+	body("name", "item name must contain 5 - 100 characters")
 		.trim()
-		.isLength({ min: 10, max: 100 })
+		.isLength({ min: 5, max: 100 })
 		.escape(),
 	body("description", "Description must not exceed 200 characters")
 		.trim()

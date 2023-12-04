@@ -16,7 +16,6 @@ allSlider.forEach((slider) => {
 	});
 	slider.addEventListener("mouseup", (e) => {
 		isDown = !isDown;
-		console.log(isDown);
 	});
 	slider.addEventListener("mousemove", (e) => {
 		if (!isDown) return;
