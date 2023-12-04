@@ -55,8 +55,9 @@ exports.item_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.item_detail = asyncHandler(async (req, res, next) => {
-	const item = await Item.findById(req.params.id).exec();
-	const itemCategory = await Category.findById(item.category).exec();
+	const item = await Item.findById(req.params.id)
+		.populate("category")
+		.exec();
 	const allCategory = await Category.find().sort({ name: 1 }).exec();
 
 	if (item === null) {
@@ -68,7 +69,6 @@ exports.item_detail = asyncHandler(async (req, res, next) => {
 	res.render("item_detail", {
 		title: item.name,
 		item: item,
-		category: itemCategory.name,
 		category_list: allCategory,
 	});
 });

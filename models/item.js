@@ -21,4 +21,8 @@ ItemSchema.virtual("url").get(function () {
 	return `/item/${this._id}`;
 });
 
+ItemSchema.virtual("src_url").get(function () {
+	return `/images/upload_item/${this.image}`;
+});
+
 module.exports = mongoose.model("Item", ItemSchema);

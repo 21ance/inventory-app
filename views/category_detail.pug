@@ -9,7 +9,7 @@ block content
         div.flex.gap-2.items-center
           button(class="modalButton buttonUpdate w-[20px] h-[20px] bg-[url('/images/png/edit-icon.png')] bg-cover")
           if category_items.length === 0
-            button(class="modalButton buttonDelete w-[20px] h-[20px]  bg-[url('/images/png/delete-icon.png')] bg-cover")
+            button(class="modalButton buttonDelete w-[20px] h-[20px] bg-[url('/images/png/delete-icon.png')] bg-cover")
       div(class="grid grid-cols-list_mini md:grid-cols-list justify-items-center gap-4")
         each item in category_items
           a(href=item.url class="min-w-[130px] min-h-[300px] w-[130px] lg:min-w-[225px] lg:w-[225px] grid grid-rows-[auto_1fr_auto_auto] gap-y-1")

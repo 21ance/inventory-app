@@ -1,13 +1,21 @@
 extends layout 
 
 block content
-  div.flex.flex-col.items-center
-    header.p-4
-      div.flex.flex-col.items-center
-        h1.text-xl= item.name
-        small= category
-        button.modalButton.buttonUpdate update
-        button.modalButton.buttonDelete delete
-
+  main(class="grid grid-cols-1 lg:grid-cols-[1fr_1fr] sm:mx-[-6rem] gap-y-2")
+    section(class="bg-[#F5F7FF] flex flex-col gap-4 lg:gap-8 sm:pl-[6rem]")
+      header
+        a(href="/").text-sm Home #{"> "}
+        a(href=`/category/${item.category.name}`).text-sm #{item.category.name} #{"> "}
+        span(class="text-[#A2A6B0] text-sm")= item.name
+      h1(class="text-2xl lg:text-4xl")= item.name
+      p(class="font-light w-[65ch]")= item.description.length !== 0 ? item.description : "We are currently on the process of adding a description for this item. Please contact us if you require more information."
+      small.font-bold Have a Question? #{" "}
+        a(href="").underline.text-blue-500 Contact Us
+      div(class="flex gap-2")
+        button(class="modalButton buttonUpdate w-[20px] h-[20px] bg-[url('/images/png/edit-icon.png')] bg-cover")
+        button(class="modalButton buttonDelete w-[20px] h-[20px] bg-[url('/images/png/delete-icon.png')] bg-cover")
+    section(class="flex flex-col items-center lg:items-start")
+      img(src=item.src_url)
+      
   include ./item_modal_form
   include ./modal_delete
