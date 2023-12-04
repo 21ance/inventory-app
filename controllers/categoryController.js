@@ -49,13 +49,11 @@ exports.category_detail = asyncHandler(async (req, res, next) => {
 				},
 				{ $sort: { _id: 1 } },
 			]).exec(),
-		]);
-
-	if (category === null) {
-		const err = new Error("Category does not exist");
-		err.status = 404;
-		return next(err);
-	}
+		]).catch(() => {
+			const err = new Error("Category does not exist");
+			err.status = 404;
+			return next(err);
+		});
 
 	res.render("category_detail", {
 		title: category.name,

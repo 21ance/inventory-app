@@ -1,8 +1,8 @@
 extends modal_layout
 
 block content
-  - const header = typeof item === "object" ? "Item" : "Category"
-  - const object = typeof item === "object" ? item : category
+  - const header = category ? "Category": "Item"
+  - const object = category ? category : item
 
   form#formDelete(method='POST' action=`/${header.toLowerCase()}/${object._id}/delete`).bg-white.p-6.rounded.flex.flex-col.gap-2
     h2 Delete #{header} 

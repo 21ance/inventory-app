@@ -15,7 +15,7 @@ itemForm.addEventListener("submit", (e) => {
 		e.preventDefault();
 	}
 
-	if (item.name < 4 || item.name > 100) {
+	if (item.name.length < 5 || item.name.length > 100) {
 		document.querySelector("#name-error").textContent =
 			"Name must contain 5 - 100 characters";
 		e.preventDefault();

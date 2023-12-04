@@ -55,16 +55,14 @@ exports.item_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.item_detail = asyncHandler(async (req, res, next) => {
-	const item = await Item.findById(req.params.id)
-		.populate("category")
-		.exec();
-	const allCategory = await Category.find().sort({ name: 1 }).exec();
-
-	if (item === null) {
+	const [item, allCategory] = await Promise.all([
+		Item.findById(req.params.id).populate("category").exec(),
+		Category.find().sort({ name: 1 }).exec(),
+	]).catch(() => {
 		const err = new Error("Item does not exist");
 		err.status = 404;
 		return next(err);
-	}
+	});
 
 	res.render("item_detail", {
 		title: item.name,
