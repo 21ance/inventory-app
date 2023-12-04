@@ -1,10 +1,12 @@
-modalForm.addEventListener("submit", (e) => {
+const itemForm = document.querySelector("#formItem");
+
+itemForm.addEventListener("submit", (e) => {
 	const item = {
-		category: document.forms["modalForm"]["category"].value,
-		name: document.forms["modalForm"]["name"].value,
-		description: document.forms["modalForm"]["description"].value,
-		price: Number(document.forms["modalForm"]["price"].value),
-		stock: Number(document.forms["modalForm"]["stock"].value),
+		category: document.forms["formItem"]["category"].value,
+		name: document.forms["formItem"]["name"].value,
+		description: document.forms["formItem"]["description"].value,
+		price: Number(document.forms["formItem"]["price"].value),
+		stock: Number(document.forms["formItem"]["stock"].value),
 	};
 
 	if (item.category == "select") {
@@ -13,9 +15,9 @@ modalForm.addEventListener("submit", (e) => {
 		e.preventDefault();
 	}
 
-	if (item.name < 10 || item.name > 100) {
+	if (item.name < 4 || item.name > 100) {
 		document.querySelector("#name-error").textContent =
-			"Name must contain 10 - 100 characters";
+			"Name must contain 5 - 100 characters";
 		e.preventDefault();
 	}
 

@@ -1,6 +1,5 @@
-function toggleModal(index) {
-	const modal = document.querySelectorAll(".modal");
-	modal[index].classList.toggle("hidden");
+function toggleModal(element) {
+	element.closest(".modal").classList.toggle("hidden");
 }
 
 function hideModal() {
@@ -12,13 +11,15 @@ function hideModal() {
 document.querySelectorAll(".modalButton").forEach((button) => {
 	button.addEventListener("click", (e) => {
 		if (e.target.classList.contains("buttonCreate")) {
-			toggleModal(0);
+			toggleModal(document.querySelector("#formItem"));
 		}
 		if (e.target.classList.contains("buttonUpdate")) {
-			toggleModal(0);
+			document.querySelector("#formCategory") === null
+				? toggleModal(document.querySelector("#formItem"))
+				: toggleModal(document.querySelector("#formCategory"));
 		}
 		if (e.target.classList.contains("buttonDelete")) {
-			toggleModal(1);
+			toggleModal(document.querySelector("#formDelete"));
 		}
 	});
 });

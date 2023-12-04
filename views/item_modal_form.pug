@@ -1,18 +1,24 @@
 extends modal_layout
 
 block content
-  - let formAction = item.name !== "" ? `/item/${item._id}/update` : "/item/create"
+  - let formItemAction = item.name === "" || item.name === undefined ? "/item/create" : `/item/${item._id}/update`
+  - console.log(item.name)
   
-  form#modalForm(method='POST' action=formAction name="modalForm" enctype="multipart/form-data").bg-white.p-6.rounded.flex.flex-col.gap-2
+  form#formItem(method='POST' action=formItemAction name="modalForm" enctype="multipart/form-data").bg-white.p-6.rounded.flex.flex-col.gap-2
     div.flex.flex-col
       label(for='category') Category:
-      select(name="category").border-black.border.p-1.rounded
-        option(value="select") -- Select --
-        each category in category_list
-          if item._id
-            option(value=category._id selected=(category._id.toString()===item.category._id.toString() ? 'selected' : false) ) #{category.name}
-          else
-            option(value=category._id) #{category.name}
+      if item.name === undefined 
+        span.font-bold.text-lg= category.name
+        select(name="category").hidden
+          option(value=category._id selected='selected')= category.name
+      else 
+        select(name="category").border-black.border.p-1.rounded
+          option(value="select") -- Select --
+          each category in category_list
+            if item._id
+              option(value=category._id selected=(category._id.toString()===item.category._id.toString() ? 'selected' : false))= category.name
+            else
+              option(value=category._id) #{category.name}
       p#category-error.text-sm.text-red-500 
     div.flex.flex-col
       label(for='name') Item:

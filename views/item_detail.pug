@@ -8,7 +8,7 @@ block content
         a(href=`/category/${item.category._id}`).text-sm #{item.category.name} #{"> "}
         span(class="text-[#A2A6B0] text-sm")= item.name
       h1(class="text-2xl lg:text-4xl")= item.name
-      p(class="font-light w-[65ch]")= item.description.length !== 0 ? item.description : "We are currently on the process of adding a description for this item. Please contact us if you require more information."
+      p(class="font-light lg:w-[65ch]")= item.description.length !== 0 ? item.description : "We are currently on the process of adding a description for this item. Please contact us if you require more information."
       small.font-bold Have a Question? #{" "}
         a(href="").underline.text-blue-500 Contact Us
       div(class="flex gap-2")

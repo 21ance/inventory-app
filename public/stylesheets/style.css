@@ -876,6 +876,10 @@ video {
 }
 @media (min-width: 768px) {
 
+  .md\:w-\[65ch\] {
+    width: 65ch;
+  }
+
   .md\:grid-cols-list {
     grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
   }
@@ -904,6 +908,10 @@ video {
 
   .lg\:w-\[225px\] {
     width: 225px;
+  }
+
+  .lg\:w-\[65ch\] {
+    width: 65ch;
   }
 
   .lg\:min-w-\[225px\] {

@@ -1,7 +1,9 @@
-modalForm.addEventListener("submit", (e) => {
-	const categoryName = document.forms["modalForm"]["name"].value;
+const categoryForm = document.querySelector("#formCategory");
+
+categoryForm.addEventListener("submit", (e) => {
+	const categoryName = document.forms["formCategory"]["name"].value;
 	const categoryDescription =
-		document.forms["modalForm"]["description"].value;
+		document.forms["formCategory"]["description"].value;
 
 	if (categoryName.length < 3 || categoryName.length > 100) {
 		document.querySelector("#name-error").textContent =

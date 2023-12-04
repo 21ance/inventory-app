@@ -4,7 +4,7 @@ block content
   - const header = typeof item === "object" ? "Item" : "Category"
   - const object = typeof item === "object" ? item : category
 
-  form#modalForm(method='POST' action=`/${header.toLowerCase()}/${object._id}/delete` name="modalForm").bg-white.p-6.rounded.flex.flex-col.gap-2
+  form#formDelete(method='POST' action=`/${header.toLowerCase()}/${object._id}/delete`).bg-white.p-6.rounded.flex.flex-col.gap-2
     h2 Delete #{header} 
     p.text-red-500= object.name
     div.flex.gap-2.pt-4

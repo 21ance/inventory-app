@@ -63,6 +63,7 @@ exports.category_detail = asyncHandler(async (req, res, next) => {
 		category_items: itemsInCategory,
 		category_list: allCategory,
 		category_sidebar: categoryItemCount,
+		item: {},
 	});
 });
 

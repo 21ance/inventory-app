@@ -7,6 +7,7 @@ block content
       div(class="flex justify-between")
         h1(class="col-[1/-1] text-xl font-bold lg:justify-self-start") #{title}
         div.flex.gap-2.items-center
+          button(class="modalButton buttonCreate w-[20px] h-[20px] bg-[url('/images/png/add-icon.png')] bg-cover")
           button(class="modalButton buttonUpdate w-[20px] h-[20px] bg-[url('/images/png/edit-icon.png')] bg-cover")
           if category_items.length === 0
             button(class="modalButton buttonDelete w-[20px] h-[20px] bg-[url('/images/png/delete-icon.png')] bg-cover")
@@ -25,5 +26,6 @@ block content
             p= item.name
             p.font-bold #{typeof item.price !== "number" ||  item.price === 0 ? "TBA" : `$${item.price.toFixed(2)}`}
 
+  include ./item_modal_form
   include ./category_modal_form
   include ./modal_delete

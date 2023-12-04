@@ -1,9 +1,9 @@
 extends modal_layout
 
 block content
-  - let formAction = category.name !== "" ? `/category/${category._id}/update` : "/category/create"
+  - let formCategoryAction = category.name !== "" ? `/category/${category._id}/update` : "/category/create"
 
-  form#modalForm(method='POST' action=formAction name="modalForm" enctype="multipart/form-data").bg-white.p-6.rounded.flex.flex-col.gap-2
+  form#formCategory(method='POST' action=formCategoryAction name="modalForm" enctype="multipart/form-data").bg-white.p-6.rounded.flex.flex-col.gap-2
     div.flex.flex-col
       label(for='name') Category:
       input(type='text', placeholder='CPU, RAM, Motherboard' name='name' value=category.name).border-black.border.p-1.rounded
