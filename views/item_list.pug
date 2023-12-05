@@ -9,7 +9,7 @@ block content
         button(class="buttonCreate modalButton w-[20px] h-[20px] bg-[url('/images/png/add-icon.png')] bg-cover")
       div(class="grid grid-cols-list_mini md:grid-cols-list justify-items-center gap-4")
         each item in item_list
-          a(href=item.url class="min-w-[130px] min-h-[300px] w-[130px] lg:min-w-[225px] lg:w-[225px] grid grid-rows-[auto_1fr_auto_auto] gap-y-1")
+          a(href=item.url class="min-w-[130px] min-h-[300px] w-[130px] lg:min-w-[225px] lg:w-[225px] grid grid-rows-[auto_1fr_auto_auto] gap-y-1 overflow-hidden")
             if item.stock === undefined || item.stock === 0
               span.flex.gap-2
                 img(src="/images/svg/check-avail.svg")
@@ -19,7 +19,7 @@ block content
                 img(src="/images/svg/in-stock.svg")
                 small(class="text-[#C94D3F]") in stock
             img(src=item.src_url class="self-center")
-            p= item.name
+            p(class="line-clamp-2")= item.name
             p.font-bold #{typeof item.price !== "number" ||  item.price === 0 ? "TBA" : `$${item.price.toFixed(2)}`}
   
   include ./item_modal_form

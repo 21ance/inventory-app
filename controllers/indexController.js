@@ -7,7 +7,7 @@ exports.index = asyncHandler(async (req, res, next) => {
 	const allCategory = await Category.find().sort({ name: 1 }).exec();
 
 	res.render("index", {
-		title: "Inventory App",
+		title: "Inventory",
 		item_list: allItems,
 		category_list: allCategory,
 	});

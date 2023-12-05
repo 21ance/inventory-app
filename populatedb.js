@@ -116,7 +116,7 @@ async function createitems() {
 			3,
 			"CORSAIR VENGEANCE RGB DDR5 RAM 32GB (2x16GB) 6000MHz CL36 Intel XMP iCUE Compatible Computer Memory",
 			"Dynamic Ten-Zone RGB Lighting: Illuminate your system with ten individually addressable, ultra-bright RGB LEDs per module, encased in a panoramic light bar for vivid RGB lighting from any viewing angle. Onboard Voltage Regulation: Enables easier, more finely-tuned, and more stable overclocking through CORSAIR iCUE software than previous generation motherboard control.",
-			categories[0],
+			categories[1],
 			105,
 			false,
 			false
@@ -148,7 +148,7 @@ async function createitems() {
 			false,
 			false
 		),
-		itemCreate(7, "Ryzen 5 3600", "", categories[1], 99.99, false, false),
+		itemCreate(7, "Ryzen 5 3600", "a", categories[0], 99.99, false, false),
 		itemCreate(
 			8,
 			"Acer Aspire 3 A315-24P-R7VH Slim Laptop | 15.6 Full HD IPS Display",
