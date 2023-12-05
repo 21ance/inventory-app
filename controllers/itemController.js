@@ -78,9 +78,9 @@ exports.item_create_post = [
 		.trim()
 		.isLength({ min: 5, max: 100 })
 		.escape(),
-	body("description", "Description must not exceed 200 characters")
+	body("description", "Description must not exceed 2000 characters")
 		.trim()
-		.isLength({ max: 200 })
+		.isLength({ max: 2000 })
 		.escape(),
 	body("category", "Category must not be empty")
 		.trim()
@@ -147,9 +147,9 @@ exports.item_update_post = [
 		.trim()
 		.isLength({ min: 5, max: 100 })
 		.escape(),
-	body("description", "Description must not exceed 200 characters")
+	body("description", "Description must not exceed 2000 characters")
 		.trim()
-		.isLength({ max: 200 })
+		.isLength({ max: 2000 })
 		.escape(),
 	body("category", "Category must not be empty")
 		.trim()

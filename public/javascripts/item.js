@@ -21,9 +21,9 @@ itemForm.addEventListener("submit", (e) => {
 		e.preventDefault();
 	}
 
-	if (item.description.length > 200) {
+	if (item.description.length > 2000) {
 		document.querySelector("#description-error").textContent =
-			"Description must not exceed 200 characters";
+			"Description must not exceed 2000 characters";
 		e.preventDefault();
 	}
 
