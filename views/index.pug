@@ -30,7 +30,7 @@ block content
           span.font-bold.text-3xl.z-10= category_list[i].name
           small.underline.z-10 See All Products
         div.scroll.overflow-auto.scrollbar-hide
-          div(class="flex gap-2 md:gap-6")
+          div(class="flex gap-2 md:gap-6 categoryItems")
             each item in item_list
               if item.category.toString() === category_list[i]._id.toString()
                 a(href=item.url class="min-w-[130px] min-h-[300px] w-[130px] lg:min-w-[225px] lg:w-[225px] grid grid-rows-[auto_1fr_auto_auto] gap-y-1")
@@ -45,4 +45,5 @@ block content
                   img(src=item.src_url class="self-center")
                   p= item.name
                   p.font-bold #{typeof item.price !== "number" ||  item.price === 0 ? "TBA" : `$${item.price.toFixed(2)}`}
-  
+
+  script(src='/javascripts/hideCategory.js')

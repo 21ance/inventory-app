@@ -506,6 +506,12 @@ video {
 .top-0 {
   top: 0px;
 }
+.bottom-0 {
+  bottom: 0px;
+}
+.bottom-\[-500px\] {
+  bottom: -500px;
+}
 .z-0 {
   z-index: 0;
 }
@@ -574,6 +580,12 @@ video {
 }
 .min-h-\[300px\] {
   min-height: 300px;
+}
+.min-h-full {
+  min-height: 100%;
+}
+.min-h-screen {
+  min-height: 100vh;
 }
 .w-\[130px\] {
   width: 130px;
@@ -1028,6 +1040,14 @@ video {
     display: flex;
   }
 
+  .sm\:min-h-\[500px\] {
+    min-height: 500px;
+  }
+
+  .sm\:min-h-\[600px\] {
+    min-height: 600px;
+  }
+
   .sm\:justify-between {
     justify-content: space-between;
   }
@@ -1052,6 +1072,14 @@ video {
   }
 }
 @media (min-width: 768px) {
+
+  .md\:min-h-\[700px\] {
+    min-height: 700px;
+  }
+
+  .md\:min-h-\[500px\] {
+    min-height: 500px;
+  }
 
   .md\:grid-cols-list {
     grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
