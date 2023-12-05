@@ -10,6 +10,7 @@ function hideModal() {
 
 document.querySelectorAll(".modalButton").forEach((button) => {
 	button.addEventListener("click", (e) => {
+		if (!isLoggedIn) return alert("Please login first");
 		if (e.target.classList.contains("buttonCreate")) {
 			toggleModal(document.querySelector("#formItem"));
 		}

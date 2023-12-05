@@ -5,7 +5,11 @@ html(lang="en")
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   include ./header
-  body(class="sm:px-24 relative")
+  body(class="px-2 sm:px-24 relative")
     block content
+
+  include ./login_modal
+  
+  script(src='/javascripts/loginHandler.js')
   script(src='/javascripts/modal.js')
   script(src='/javascripts/scroll.js')

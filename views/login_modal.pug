@@ -1,0 +1,10 @@
+div(class="modal fixed bg-gray-600 bg-opacity-50 overflow-y-auto items-center justify-center z-20 flex hidden mx-[-6rem] inset-0")
+  form#formLogin(class="bg-white p-6 rounded flex flex-col gap-2")
+    div.flex.flex-col
+      label(for='username') Username:
+      input(type="text" class="border-black border p-1 rounded" name="username")
+    div.flex.flex-col
+      label(for='password') Password:
+      input(type="password" class="border-black border p-1 rounded" name="password")
+    button#login(type="button" class="text-white bg-blue-500 py-2 px-4 rounded") Login
+    p#login-error.text-sm.text-red-500.text-center

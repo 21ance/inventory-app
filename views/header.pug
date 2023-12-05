@@ -1,4 +1,4 @@
-header(class="sticky top-0 flex flex-col sm:mx-[-6rem] z-20")
+header(class="sticky top-0 flex flex-col mx-[-0.5rem] sm:mx-[-6rem] z-20")
   div(class="bg-neutral-950 text-white h-[44px] text-sm flex justify-center sm:justify-between items-center sm:px-24")
     span(class="hidden sm:block")
       span.text-neutral-400 Mon-Thu #{" "}
@@ -12,10 +12,11 @@ header(class="sticky top-0 flex flex-col sm:mx-[-6rem] z-20")
         img(src="/images/svg/fb.svg")
       a(href="")
         img(src="/images/svg/ig.svg")
-  div(class="flex gap-4 justify-center sm:justify-start items-center font-bold shadow sm:px-24 py-4 bg-white")
-    a(href="/" class="hidden sm:inline")
+  div(class="flex justify-start items-center font-bold shadow sm:px-24 sm:py-4 bg-white relative")
+    a(href="/")
       img(src="/images/svg/logo.svg")
-    if category_list !== undefined
-      each category in category_list
-        a(href=`/category/${category.id}` class="hover:text-blue-500")= category.name
-      button(class="text-blue-500 rounded-full border-2 py-1 px-4 border-blue-500 hidden sm:block") Our Deals
+    nav(class="gap-4 hidden sm:flex")
+      if category_list
+        each category in category_list
+          a(href=`/category/${category.id}` class="hover:text-blue-500")= category.name
+    button(class="buttonLogin text-blue-500 rounded-full border-2 py-1 px-4 border-blue-500 absolute right-0 mr-[1rem] sm:mr-[6rem]") Login
