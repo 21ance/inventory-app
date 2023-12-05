@@ -2,7 +2,7 @@ extends layout
 
 block content
   section(class="flex gap-4 pt-4 flex-wrap")
-    button(class="modalButton buttonCreate w-full lg:min-w-[225px] h-[150px] lg:w-[225px] flex flex-col items-center justify-around lg:h-[400px] relative rounded bg-[url('/images/avif/new.avif')] bg-cover text-green-500 text-3xl font-bold") New +
+    button(class="modalButton buttonCreateCat w-full lg:min-w-[225px] h-[150px] lg:w-[225px] flex flex-col items-center justify-around lg:h-[400px] relative rounded bg-[url('/images/avif/new.avif')] bg-cover text-green-500 text-3xl font-bold") New +
     - for(let i = 0; i < category_list.length && i < 5; i ++)
       a(href=`/category/${category_list[i]._id}` class="w-full lg:min-w-[225px] h-[150px] lg:w-[225px] flex flex-col items-center justify-around lg:h-[400px] text-white relative rounded bg-slate-700")
         image(src=category_list[i].src_url class="absolute z-0 h-full w-full object-cover blur-[2px]")

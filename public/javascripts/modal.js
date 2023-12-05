@@ -14,6 +14,9 @@ document.querySelectorAll(".modalButton").forEach((button) => {
 		if (e.target.classList.contains("buttonCreate")) {
 			toggleModal(document.querySelector("#formItem"));
 		}
+		if (e.target.classList.contains("buttonCreateCat")) {
+			toggleModal(document.querySelector("#formCategory"));
+		}
 		if (e.target.classList.contains("buttonUpdate")) {
 			document.querySelector("#formCategory") === null
 				? toggleModal(document.querySelector("#formItem"))
