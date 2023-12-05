@@ -9,8 +9,8 @@ block content
         h2(class="font-bold text-lg lg:text-3xl") New Products
         a(href="/items" class="text-sm text-blue-500 underline underline-offset-2") See All New Items
       div(class="scroll flex gap-2 md:gap-6 overflow-auto scrollbar-hide")
-        - for(let i = 0; i < item_list.length && i < 5; i ++)
-          a(href=item_list[i].url class="min-w-[130px] min-h-[300px] w-[130px] lg:min-w-[225px] lg:w-[225px] grid grid-rows-[auto_1fr_auto_auto] gap-y-1")
+        - for(let i = 0; i < item_list.length && i < 10; i ++)
+          a(href=item_list[i].url class="min-w-[130px] min-h-[300px] w-[130px] lg:min-w-[225px] lg:w-[225px] grid grid-rows-[auto_1fr_auto_auto] gap-y-1 overflow-hidden")
             if item_list[i].stock === undefined || item_list[i].stock === 0
               span.flex.gap-2
                 img(src="/images/svg/check-avail.svg")
@@ -20,7 +20,7 @@ block content
                 img(src="/images/svg/in-stock.svg")
                 small(class="text-[#C94D3F]") in stock
             img(src=item_list[i].src_url class="self-center")
-            p= item_list[i].name
+            p(class="line-clamp-2")= item_list[i].name
             p.font-bold #{typeof item_list[i].price !== "number" || item_list[i].price === 0 ? "TBA" : `$${item_list[i].price.toFixed(2)}`}
     include ./zip-banner
     - for(let i = 0; i < category_list.length && i < 5; i ++)
@@ -33,7 +33,7 @@ block content
           div(class="flex gap-2 md:gap-6 categoryItems")
             each item in item_list
               if item.category.toString() === category_list[i]._id.toString()
-                a(href=item.url class="min-w-[130px] min-h-[300px] w-[130px] lg:min-w-[225px] lg:w-[225px] grid grid-rows-[auto_1fr_auto_auto] gap-y-1")
+                a(href=item.url class="min-w-[130px] min-h-[300px] w-[130px] lg:min-w-[225px] lg:w-[225px] grid grid-rows-[auto_1fr_auto_auto] overflow-hidden")
                   if item.stock === undefined || item.stock === 0
                     span.flex.gap-2
                       img(src="/images/svg/check-avail.svg")
@@ -43,7 +43,7 @@ block content
                       img(src="/images/svg/in-stock.svg")
                       small(class="text-[#C94D3F]") in stock
                   img(src=item.src_url class="self-center")
-                  p= item.name
+                  p(class="line-clamp-2")= item.name
                   p.font-bold #{typeof item.price !== "number" ||  item.price === 0 ? "TBA" : `$${item.price.toFixed(2)}`}
     a(href="/categories" class="capitalize bg-[#F5F7FF] py-6 rounded gap-2 text-lg text-center font-bold text-[#272560] hover:text-blue-500") View all categories
 
