@@ -25,6 +25,8 @@ block content
             img(src=item.src_url class="self-center")
             p= item.name
             p.font-bold #{typeof item.price !== "number" ||  item.price === 0 ? "TBA" : `$${item.price.toFixed(2)}`}
+        if category_items.length === 0
+          p(class="col-[1/-1] justify-self-start") There are no items in this category.
 
   include ./item_modal_form
   include ./category_modal_form
