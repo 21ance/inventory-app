@@ -18,6 +18,7 @@ View Live @ [Render Free Hosting](https://inventory-4k9m.onrender.com/)
 
 - username: admin
 - password: 0101
+  <br>
   _Note: I am only using the free tier which means that the initial load might take quite a minute or two. The images will also be missing (undefined) as the free tier server resets every time it goes to sleep mode._
 
 _If you are interested on how the website looks with uploaded images I have attached screenshots below_
@@ -53,6 +54,7 @@ npm run tailwind-watch
 #
 
 **Mongoose Schema:**
+<br>
 <img src="https://i.imgur.com/Z59SkW9.jpeg">
 
 #
