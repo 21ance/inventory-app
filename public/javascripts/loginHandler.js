@@ -8,7 +8,7 @@ loginModalOpener.addEventListener("click", () => {
 	}
 	if (isLoggedIn) {
 		localStorage.removeItem("hello");
-		location.href = "/";
+		location.reload();
 	}
 });
 
@@ -23,7 +23,7 @@ function validateLogin() {
 		error.textContent = "Invalid credentials";
 	} else {
 		localStorage.setItem("hello", "world");
-		location.href = "/";
+		location.reload();
 	}
 }
 
