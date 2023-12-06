@@ -1,4 +1,4 @@
-const isLoggedIn = sessionStorage.getItem("hello") === "world";
+const isLoggedIn = localStorage.getItem("hello") === "world";
 const btnLogin = document.querySelector("#login");
 const loginModalOpener = document.querySelector(".buttonLogin");
 
@@ -7,7 +7,7 @@ loginModalOpener.addEventListener("click", () => {
 		toggleModal(document.querySelector("#formLogin"));
 	}
 	if (isLoggedIn) {
-		sessionStorage.removeItem("hello");
+		localStorage.removeItem("hello");
 		location.href = "/";
 	}
 });
@@ -22,7 +22,7 @@ function validateLogin() {
 	} else if (password !== "0101") {
 		error.textContent = "Invalid credentials";
 	} else {
-		sessionStorage.setItem("hello", "world");
+		localStorage.setItem("hello", "world");
 		location.href = "/";
 	}
 }
